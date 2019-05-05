@@ -7,6 +7,10 @@ LICENSE = "MIT & MIT-style"
 
 DEPENDS = "util-macros flex-native bison-native"
 
+# Fix a following runtime error:
+# xkbcommon: ERROR: couldn't find a Compose file for locale "C"
+RDEPENDS_${PN} = "libx11-locale"
+
 SRC_URI = "http://xkbcommon.org/download/${BPN}-${PV}.tar.xz"
 
 SRC_URI[md5sum] = "3c4409058dfd203f641a563358e0187d"
