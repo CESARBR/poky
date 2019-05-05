@@ -32,7 +32,13 @@ PACKAGECONFIG[xcms] = "--enable-xcms,--disable-xcms"
 CPPFLAGS_FOR_BUILD += "-D_GNU_SOURCE"
 
 PACKAGES =+ "${PN}-xcb"
+PACKAGES_remove = "${PN}-locale"
 
 FILES_${PN} += "${datadir}/X11/XKeysymDB ${datadir}/X11/XErrorDB ${datadir}/X11/Xcms.txt"
 FILES_${PN}-xcb += "${libdir}/libX11-xcb.so.*"
-FILES_${PN}-locale += "${datadir}/X11/locale ${libdir}/X11/locale"
+
+# locale data files would be provided by libx11-locale recipe
+do_install_append() {
+	rm -rf ${D}${datadir}/X11/locale
+	rm -rf ${D}${libdir}/X11/locale
+}
