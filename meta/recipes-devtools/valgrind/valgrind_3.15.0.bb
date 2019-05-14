@@ -114,6 +114,10 @@ RDEPENDS_${PN}-ptest_append_libc-glibc = " glibc-utils"
 # One of the tests contains a bogus interpreter path on purpose.
 # Skip file dependency check
 SKIP_FILEDEPS_${PN}-ptest = '1'
+# INHIBIT_PACKAGE_STRIP_${PN}-ptest = '1'
+# PACKAGE_DEBUG_SPLIT_STYLE_${PN}-ptest = 'debug-file-directory'
+INHIBIT_PACKAGE_STRIP = '1'
+PACKAGE_DEBUG_SPLIT_STYLE = 'debug-file-directory'
 
 do_compile_ptest() {
     oe_runmake check
